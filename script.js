@@ -45,8 +45,8 @@ const projects = [
   },
   {
     name: "ChronoMundi",
-    desc: "Projeto de jogo desenvolvido em equipe com Unity.",
-    tags: ["C#", "Unity"],
+    desc: "Museu virtual em realidade virtual feito em Unity, com salas temáticas, personagens guias e suporte a Android/Cardboard. Desenvolvido em equipe.",
+    tags: ["C#", "Unity", "VR"],
     repo: "ChronoMundi",
     color: "linear-gradient(135deg,#3cb4ff,#0b4f86)",
     initials: "CM",
@@ -68,12 +68,16 @@ const tools = [
   { name: "Python", role: "IA, visão computacional e back-end", img: icon("python") },
   { name: "C#", role: "Jogos e aplicações .NET", img: icon("csharp") },
   { name: "Unity", role: "Engine de jogos", img: icon("unity") },
+  { name: "Unreal Engine", role: "Jogos 3D com Blueprints", img: icon("unrealengine") },
+  { name: "JavaScript", role: "Interatividade na web", img: icon("javascript") },
   { name: "Flask", role: "Framework web em Python", img: icon("flask") },
   { name: "Flutter / Dart", role: "Apps multiplataforma", img: icon("flutter") },
   { name: "OpenCV", role: "Processamento de imagens", img: icon("opencv") },
   { name: "PyTorch", role: "Deep learning", img: icon("pytorch") },
   { name: "HTML & CSS", role: "Interfaces web", img: icon("html5") },
-  { name: "SQLite", role: "Banco de dados", img: icon("sqlite") },
+  { name: "MySQL & SQLite", role: "Bancos relacionais", img: icon("mysql") },
+  { name: "MongoDB", role: "Banco NoSQL", img: icon("mongodb") },
+  { name: "Docker", role: "Containers", img: icon("docker") },
   { name: "Git & GitHub", role: "Versionamento", img: icon("github") },
 ];
 
