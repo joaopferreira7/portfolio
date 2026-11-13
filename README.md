@@ -26,6 +26,8 @@ Os dados ficam no topo do `script.js`:
 
 A experiência profissional fica direto no `index.html`, seção `#experiencia`. Para trocar o CV, substitua o PDF mantendo o nome. Edite, faça commit e push — a Vercel publica automaticamente.
 
+> Ao mudar `style.css` ou `script.js`, atualize o `?v=` deles no `index.html` (ex.: `?v=2026-12-01`). O `vercel.json` guarda esses arquivos em cache por 1 hora, e sem trocar o `?v=` quem já visitou o site continua vendo a versão antiga.
+
 ## Rodar localmente
 
 ```bash
