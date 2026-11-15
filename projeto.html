@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projeto — João Pedro Ferreira</title>
+  <meta name="description" content="Projeto do portfólio de João Pedro Ferreira, desenvolvedor de software." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://joaopferreira.vercel.app/og.png" />
+  <link rel="icon" href="https://github.com/joaopferreira7.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2026-11-15" />
+</head>
+<body>
+  <nav class="nav">
+    <a href="./#inicio">Início</a>
+    <a href="./#experiencia">Experiência</a>
+    <a href="./#projetos" class="active">Projetos</a>
+    <a href="./#contato">Contato</a>
+  </nav>
+
+  <main class="page" id="page"></main>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Imagem ampliada">
+    <img id="lightbox-img" alt="" />
+  </dialog>
+
+  <script src="dados.js?v=2026-11-15"></script>
+  <script>
+    const id = new URLSearchParams(location.search).get("id");
+    const p = projectsData.find((x) => x.id === id);
+    const page = document.getElementById("page");
+    const back = `<a class="back" href="./#projetos">← Voltar para projetos</a>`;
+
+    if (!p) {
+      page.innerHTML = `${back}<h1 class="title">Projeto não<br /><span class="muted">encontrado</span></h1>
+        <p class="not-found">Esse link não aponta para nenhum projeto. Veja a lista completa na página inicial.</p>`;
+    } else {
+      document.title = `${p.name} — João Pedro Ferreira`;
+      // Com problem/did/result a seção "Sobre o projeto" já explica tudo; sem eles, usa o resumo.
+      const lead = p.did ? "" : p.desc;
+      const tags = `<div class="tags">${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>`;
+      const links = [
+        p.repo ? `<a class="btn-outline small" href="${GITHUB}/${p.repo}" target="_blank" rel="noopener">Código no GitHub ↗</a>` : "",
+        ...(p.links || []).map((l) => `<a class="btn-outline small" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`),
+      ].join("");
+
+      const video = p.video
+        ? `<section class="page-section"><h2>Vídeo</h2>
+            <div class="video-wrap${p.video.vertical ? " vertical" : ""}">
+              <video src="${p.video.src}" ${p.video.poster ? `poster="${p.video.poster}"` : ""} controls playsinline preload="${p.video.poster ? "none" : "metadata"}"></video>
+            </div>
+            ${p.video.caption ? `<p class="video-caption">${p.video.caption}</p>` : ""}
+          </section>`
+        : "";
+
+      const facts = p.did
+        ? `<section class="page-section"><h2>Sobre o projeto</h2><dl class="facts">
+            ${p.problem ? `<div><dt>Problema</dt><dd>${p.problem}</dd></div>` : ""}
+            <div><dt>O que fiz</dt><dd>${p.did}</dd></div>
+            ${p.result ? `<div><dt>Resultado</dt><dd>${p.result}</dd></div>` : ""}
+          </dl></section>`
+        : "";
+
+      const how = p.highlights
+        ? `<section class="page-section"><h2>Como foi feito</h2><ul class="how">${p.highlights.map((h) => `<li>${h}</li>`).join("")}</ul></section>`
+        : "";
+
+      const gallery = p.gallery && p.gallery.length
+        ? `<section class="page-section"><h2>Capturas de tela</h2>
+            <div class="gallery${p.galleryVertical ? " vertical" : ""}">
+              ${p.gallery.map((src, i) => `<button type="button" data-src="${src}" aria-label="Ampliar captura ${i + 1} de ${p.gallery.length}"><img src="${src}" alt="Captura ${i + 1} do ${p.name}" loading="lazy" /></button>`).join("")}
+            </div></section>`
+        : "";
+
+      page.innerHTML = `${back}
+        ${p.kind ? `<p class="page-kind">${p.kind}</p>` : ""}
+        <h1 class="title">${p.name}</h1>
+        ${lead ? `<p class="page-lead">${lead}</p>` : ""}
+        ${tags}
+        ${links ? `<div class="feat-links">${links}</div>` : ""}
+        ${video}${facts}${how}${gallery}`;
+
+      const box = document.getElementById("lightbox");
+      const boxImg = document.getElementById("lightbox-img");
+      page.querySelectorAll(".gallery button").forEach((b) =>
+        b.addEventListener("click", () => {
+          boxImg.src = b.dataset.src;
+          boxImg.alt = b.querySelector("img").alt;
+          box.showModal();
+        })
+      );
+      box.addEventListener("click", () => box.close());
+    }
+  </script>
+</body>
+</html>

@@ -10,23 +10,24 @@ Site estático em HTML, CSS e JavaScript puro — sem build — hospedado na **V
 |---|---|
 | `index.html` | Estrutura das seções (início, experiência, projetos, ferramentas, contato) |
 | `style.css` | Tema escuro, cartão de perfil fixo, layout responsivo |
-| `script.js` | Projetos em destaque, outros projetos, ferramentas, formulário de contato (Formspree ou mailto) e animações |
+| `dados.js` | Dados de todos os projetos (usado pela página inicial e pela página de cada projeto) |
+| `script.js` | Renderiza projetos e ferramentas, formulário de contato (FormSubmit, com fallback para mailto) e animações |
+| `projeto.html` | Página de cada projeto com vídeo, "como foi feito" e galeria (`projeto.html?id=...`) |
+| `img/projetos/` | Capturas (WebP) e vídeos (MP4) dos projetos |
 | `cv-joao-pedro-ferreira.pdf` | Currículo do botão "Baixar CV" |
 | `og.png` | Imagem de prévia ao compartilhar o link (1200×630) |
 | `vercel.json` | Configuração de deploy (URLs limpas e cache) |
 
 ## Como atualizar
 
-Os dados ficam no topo do `script.js`:
-
-- `featured`: projetos em destaque (problema → o que fiz → resultado). Campos opcionais: `image` (captura de tela) e `demo` (link da demo).
-- `projects`: outros projetos.
-- `toolsMain` / `toolsExtra`: ferramentas do dia a dia e as que já usei.
-- `FORMSPREE_ID`: ID do formulário no [Formspree](https://formspree.io). Vazio = o formulário abre o app de e-mail.
+- **Projetos:** lista `projectsData` no `dados.js`. `featured: true` coloca o projeto em destaque (problema → o que fiz → resultado). Projetos com `gallery` ou `video` ganham página própria; os outros abrem direto no GitHub. Os campos estão explicados no topo do arquivo.
+- **Imagens e vídeos:** coloque em `img/projetos/<id>/`. Prefira WebP com até 1280 px de largura e MP4 (H.264) com `-movflags +faststart`.
+- **Ferramentas:** `toolsMain` / `toolsExtra` no `script.js`.
+- **Formulário:** usa o [FormSubmit](https://formsubmit.co) (`FORM_ENDPOINT` no `script.js`). Na primeira mensagem, chega um e-mail de ativação; depois de clicar no link, as mensagens passam a chegar normalmente. Se o envio falhar, o formulário oferece abrir o app de e-mail.
 
 A experiência profissional fica direto no `index.html`, seção `#experiencia`. Para trocar o CV, substitua o PDF mantendo o nome. Edite, faça commit e push — a Vercel publica automaticamente.
 
-> Ao mudar `style.css` ou `script.js`, atualize o `?v=` deles no `index.html` (ex.: `?v=2026-12-01`). O `vercel.json` guarda esses arquivos em cache por 1 hora, e sem trocar o `?v=` quem já visitou o site continua vendo a versão antiga.
+> Ao mudar `style.css`, `dados.js` ou `script.js`, atualize o `?v=` deles no `index.html` e no `projeto.html` (ex.: `?v=2026-12-01`). O `vercel.json` guarda esses arquivos em cache por 1 hora, e sem trocar o `?v=` quem já visitou o site continua vendo a versão antiga.
 
 ## Rodar localmente
 

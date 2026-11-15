@@ -1,82 +1,13 @@
-// ===== Dados — edite aqui para atualizar o portfólio =====
-const GITHUB = "https://github.com/joaopferreira7";
-const EMAIL = "jpf190617@gmail.com";
+// Dados dos projetos: dados.js (carregado antes deste arquivo).
 
-// Formspree: crie um formulário grátis em https://formspree.io e cole o ID aqui
-// (ex.: "xyzabcd"). Enquanto estiver vazio, o formulário abre o app de e-mail.
-const FORMSPREE_ID = "";
+// Formulário de contato via FormSubmit (https://formsubmit.co), sem cadastro.
+// Na primeira mensagem enviada, o FormSubmit manda um e-mail de ativação para EMAIL:
+// é só clicar no link uma vez. Para esconder o e-mail do código, troque pelo
+// endereço aleatório que o FormSubmit envia depois da ativação.
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${EMAIL}`;
 
-// Projetos em destaque — formato problema → o que fiz → resultado.
-// Para adicionar imagem: image: "img/fintrack.png". Para demo: demo: "https://...".
-const featured = [
-  {
-    name: "FinTrack",
-    kind: "Back-end · projeto pessoal",
-    problem: "Aplicação de finanças pessoais com API REST, frontend SPA e integração com IA.",
-    did: "Criei do zero (API REST, SPA e Docker) e reescrevi na v2 com Clean Architecture, Service Layer, Repository Pattern, Marshmallow, autenticação JWT e isolamento multi-tenant. Integrei IA ao backend e migrei o provedor (Anthropic → Groq → Gemini).",
-    result: "Testes com pytest expuseram bugs reais, e uma auditoria técnica própria levantou 23 achados, incluindo segredos no código, JWT em localStorage e prompt injection no endpoint de IA.",
-    tags: ["Python", "Flask", "JWT", "pytest", "Docker"],
-    repo: "FinTrack",
-    color: "linear-gradient(135deg,#2ecc8f,#117a52)",
-    initials: "FT",
-  },
-  {
-    name: "Ecos de Aldenor",
-    kind: "Jogo 2D · equipe de 5",
-    problem: "Jogo de plataforma em que um explorador chega à vila abandonada de Aldenor em busca de um artefato protegido por uma antiga guardiã.",
-    did: "Implementei, seguindo o GDD, o personagem jogável, 3 tipos de inimigos (incluindo o chefe), 3 fases e tutorial, checkpoints, coletáveis, HUD, menu de pausa e telas de vitória e derrota.",
-    result: "Jogo completo e jogável, do tutorial ao chefe final.",
-    tags: ["C#", "Unity 6", "GDD"],
-    repo: "Ecos-de-Aldenor",
-    color: "linear-gradient(135deg,#c5ff41,#5e8a00)",
-    initials: "EA",
-  },
-  {
-    name: "AutoLeitura",
-    kind: "Visão computacional · equipe",
-    problem: "Leitura automática de medidores de água e energia a partir de fotos.",
-    did: "Pipeline em duas etapas: YOLOv8 detecta o contador na imagem e uma CRNN com CTC lê os dígitos, com interface em Streamlit.",
-    tags: ["Python", "YOLOv8", "OpenCV", "PyTorch", "Streamlit"],
-    repo: "AutoLeitura",
-    color: "linear-gradient(135deg,#f46c38,#b83a12)",
-    initials: "AL",
-  },
-];
-
-const projects = [
-  {
-    name: "ChronoMundi",
-    desc: "Museu virtual em realidade virtual, em equipe. Fiz os personagens acompanhantes, o sistema de artefatos por sala e o suporte a VR no Android/Cardboard.",
-    tags: ["C#", "Unity", "VR"],
-    repo: "ChronoMundi",
-    color: "linear-gradient(135deg,#3cb4ff,#0b4f86)",
-    initials: "CM",
-  },
-  {
-    name: "Concilig App",
-    desc: "Aplicação em C#/.NET entregue como solução do desafio técnico da Concilig.",
-    tags: ["C#", ".NET"],
-    repo: "ConciligAppp",
-    color: "linear-gradient(135deg,#ffb238,#8a5400)",
-    initials: "CA",
-  },
-  {
-    name: "Lumi: Voo na Caverna",
-    desc: "Jogo 2D em Unity inspirado em Flappy Bird: guie a vaga-lume Lumi por uma caverna de cristais.",
-    tags: ["C#", "Unity", "2D"],
-    repo: "lumi-voo-na-caverna",
-    color: "linear-gradient(135deg,#7b5cff,#2b1a7a)",
-    initials: "LU",
-  },
-  {
-    name: "Missão Solidária",
-    desc: "Jogo educativo em equipe que promove empatia, colaboração e solidariedade.",
-    tags: ["Dart", "Flutter"],
-    repo: "Missao-Solidaria",
-    color: "linear-gradient(135deg,#ff4f8b,#8a0f3a)",
-    initials: "MS",
-  },
-];
+const featured = projectsData.filter((p) => p.featured);
+const projects = projectsData.filter((p) => !p.featured);
 
 const icon = (name, variant = "original") =>
   `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${name}-${variant}.svg`;
@@ -107,7 +38,7 @@ const toolsExtra = [
 const tagsHtml = (tags) => `<div class="tags">${tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>`;
 const thumb = (p, cls) =>
   p.image
-    ? `<img class="${cls}" src="${p.image}" alt="Captura de tela do ${p.name}" loading="lazy" />`
+    ? `<img class="${cls}" src="${p.image}" alt="Captura de tela do ${p.name}" loading="lazy"${p.imagePosition ? ` style="object-position:${p.imagePosition}"` : ""} />`
     : `<div class="${cls}" style="background:${p.color}" aria-hidden="true">${p.initials}</div>`;
 
 document.getElementById("featured-list").innerHTML = featured
@@ -125,8 +56,9 @@ document.getElementById("featured-list").innerHTML = featured
         </dl>
         ${tagsHtml(p.tags)}
         <div class="feat-links">
-          <a class="btn-outline small" href="${GITHUB}/${p.repo}" target="_blank" rel="noopener">Código ↗</a>
-          ${p.demo ? `<a class="btn small" href="${p.demo}" target="_blank" rel="noopener">Ver demo ↗</a>` : ""}
+          ${hasPage(p) ? `<a class="btn small" href="${projectUrl(p)}">${p.video ? "Ver vídeo e capturas" : "Ver capturas"} →</a>` : ""}
+          ${p.repo ? `<a class="btn-outline small" href="${GITHUB}/${p.repo}" target="_blank" rel="noopener">Código ↗</a>` : ""}
+          ${(p.links || []).map((l) => `<a class="btn-outline small" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join("")}
         </div>
       </div>
     </article>`
@@ -136,14 +68,14 @@ document.getElementById("featured-list").innerHTML = featured
 document.getElementById("project-list").innerHTML = projects
   .map(
     (p) => `
-    <a class="project reveal" href="${GITHUB}/${p.repo}" target="_blank" rel="noopener">
+    <a class="project reveal" href="${projectUrl(p)}"${hasPage(p) ? "" : ' target="_blank" rel="noopener"'}>
       ${thumb(p, "project-thumb")}
       <div class="project-body">
         <h3>${p.name}</h3>
         <p>${p.desc}</p>
         ${tagsHtml(p.tags)}
       </div>
-      <span class="project-arrow" aria-hidden="true">↗</span>
+      <span class="project-arrow" aria-hidden="true">${hasPage(p) ? "→" : "↗"}</span>
     </a>`
   )
   .join("");
@@ -167,40 +99,47 @@ document.getElementById("tool-extra").innerHTML = toolsExtra
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// ===== Formulário de contato (Formspree, com fallback para mailto) =====
+// ===== Formulário de contato (FormSubmit, com fallback para mailto) =====
 const form = document.getElementById("contact-form");
 const note = document.getElementById("form-note");
 const noteDefault = note.innerHTML;
+const mailtoLink = (f, subject) =>
+  `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+    `${f.get("mensagem")}\n\n— ${f.get("nome")} (${f.get("email")})`
+  )}`;
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const f = new FormData(form);
   const subject = `[Portfólio] ${f.get("assunto")} — ${f.get("nome")}`;
-
-  if (!FORMSPREE_ID) {
-    const body = `${f.get("mensagem")}\n\n— ${f.get("nome")} (${f.get("email")})`;
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    return;
-  }
-
   const button = form.querySelector("button");
   button.disabled = true;
   button.textContent = "Enviando…";
-  f.append("_subject", subject);
   try {
-    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+    const res = await fetch(FORM_ENDPOINT, {
       method: "POST",
-      body: f,
-      headers: { Accept: "application/json" },
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        nome: f.get("nome"),
+        email: f.get("email"),
+        assunto: f.get("assunto"),
+        mensagem: f.get("mensagem"),
+        _subject: subject,
+        _replyto: f.get("email"),
+        _template: "table",
+        _captcha: "false",
+      }),
     });
-    if (!res.ok) throw new Error(res.status);
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || String(data.success) !== "true") throw new Error(data.message || res.status);
     form.reset();
     note.textContent = "Mensagem enviada! Respondo em breve.";
   } catch {
-    note.innerHTML = `Não consegui enviar agora. Me escreva direto em <a href="mailto:${EMAIL}">${EMAIL}</a>.`;
+    note.innerHTML = `Não consegui enviar agora. <a href="${mailtoLink(f, subject)}">Abrir no seu e-mail</a> ou escreva para <a href="mailto:${EMAIL}">${EMAIL}</a>.`;
   } finally {
     button.disabled = false;
     button.textContent = "Enviar mensagem";
-    setTimeout(() => (note.innerHTML = noteDefault), 8000);
+    setTimeout(() => (note.innerHTML = noteDefault), 12000);
   }
 });
 
