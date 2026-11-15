@@ -40,7 +40,7 @@ const projectsData = [
     name: "Jornada do Bem",
     kind: "Jogo mobile · equipe de 5 · publicado na Play Store",
     problem: "Falar de empatia e solidariedade com crianças sem virar sermão: transformar ações solidárias do dia a dia em desafios com pontuação e fases.",
-    did: "Em equipe de 5, do design no Figma à publicação: jogo para Android em Flutter/Dart com três minijogos (cesta básica, separação de roupas para doação e limpeza do parque), telas de história e de \"como jogar\", pontuação e feedback por desempenho.",
+    did: "Desenvolvi, em equipe de 5, o app em Flutter/Dart com design no Figma: três minijogos (cesta básica, separação de roupas para doação e limpeza do parque), telas de história e de \"como jogar\", pontuação e feedback por desempenho, até a publicação na Play Store.",
     result: "Jogo publicado na Google Play Store em 2025, com 3 minijogos completos, um deles com 3 fases de dificuldade crescente.",
     desc: "Jogo educativo para Android sobre empatia e solidariedade, feito em Flutter e publicado na Play Store.",
     highlights: [
@@ -104,7 +104,7 @@ const projectsData = [
     kind: "Realidade virtual · equipe",
     desc: "Museu virtual em VR feito na Unity. Fiz os personagens acompanhantes, o sistema de artefatos por sala e o suporte a VR no Android/Cardboard.",
     problem: "Ver um artefato de perto, no ambiente da época, ensina mais do que ler sobre ele. A partir de um hub central, o jogador atravessa portais para a Pré-História, a Idade Média e o Futuro e examina artefatos com painel de informações e narração.",
-    did: "Fiz os personagens acompanhantes (um guia por era: Uruk, Sir Aldric e ARIA), o sistema de artefatos por sala, que libera a saída quando todos são explorados, e o suporte a VR no Android/Cardboard.",
+    did: "Fiz os personagens acompanhantes (um guia por era: Uruk, Sir Aldric e ARIA), o sistema de artefatos por sala, que libera a saída quando todos são explorados, e o suporte a VR no Android/Cardboard. Também fiz a auditoria completa do repositório.",
     result: "Três eras completas para explorar, rodando em VR e também no computador com teclado e mouse.",
     highlights: [
       "5 cenas: menu, hub do museu e uma cena por era",
@@ -192,3 +192,78 @@ const projectsData = [
 
 const hasPage = (p) => Boolean((p.gallery && p.gallery.length) || p.video);
 const projectUrl = (p) => (hasPage(p) ? `projeto.html?id=${p.id}` : `${GITHUB}/${p.repo}`);
+
+// ===== Formação =====
+const education = [
+  { title: "Bacharelado em Ciência da Computação", org: "UNISAGRADO · Bauru/SP", date: "02/2024 — 12/2027 (previsão)", status: "Cursando",
+    desc: "Engenharia de software, banco de dados, redes e sistemas distribuídos, computação gráfica, visão computacional, IA generativa e desenvolvimento de jogos." },
+  { title: "Ensino Médio", org: "E.E. Christino Cabral", date: "2021 — 2023", status: "Concluído" },
+];
+
+const languages = [
+  { name: "Português", level: "Nativo" },
+  { name: "Inglês", level: "Avançado" },
+  { name: "Espanhol", level: "Básico" },
+];
+
+const otherCourses = ["C# Completo (Udemy)", "Desenvolvimento Web Completo (Udemy)"];
+
+// Trajetória ano a ano
+const journey = [
+  { year: "2021–2023", items: ["Ensino Médio na E.E. Christino Cabral", "Primeiro contato com programação: jogos em Scratch (Alura, 2023)"] },
+  { year: "2024", items: [
+    "Entrada em Ciência da Computação na UNISAGRADO",
+    "Python e Projetos de Sistemas de TI (Fundação Bradesco)",
+    "Introdução à Unity e ao Figma (UNISAGRADO)",
+    "Líder do Reciclei!: 3º lugar e publicação na Revista Científica InterAção",
+    "Sistema de avaliação do suporte financeiro com SQL Server e dashboard",
+  ] },
+  { year: "2025", items: [
+    "Fábrica de Software: 109 horas de projeto de extensão",
+    "Jornada do Bem: app em Flutter publicado na Play Store",
+    "Aplicação de Banco de Dados Online (Fundação FAT, 120 horas)",
+    "Curso de extensão em Automação de Processos com RPA (40 horas)",
+    "Início do estágio em desenvolvimento Java na Yank Solutions",
+  ] },
+  { year: "2026", items: [
+    "FinTrack v2: Clean Architecture, JWT, multi-tenant e IA",
+    "Jogos e VR em equipe: Ecos de Aldenor, Protocolo Ômega e ChronoMundi",
+    "Vitrine Bauru: projeto de extensão com a SEDECON",
+  ] },
+  { year: "2027", items: ["Formatura prevista (dezembro)"], future: true },
+];
+
+// ===== Certificados =====
+// category: "curso", "extensao" ou "evento". credential: link público (opcional).
+const C = "img/certificados";
+const certificates = [
+  { title: "Aplicação de Banco de Dados Online", org: "Fundação FAT · Governo de SP", date: "Set/2025", hours: 120, category: "curso",
+    skills: ["SQL Server", "Azure SQL"], image: `${C}/fat-banco-de-dados-2025` },
+  { title: "Fábrica de Software: Websites, Aplicativos e Jogos", org: "UNISAGRADO", date: "1º sem./2025", hours: 109, category: "extensao",
+    skills: ["POO", "Documentação", "Equipe"], image: `${C}/fabrica-software-2025`,
+    credential: "https://drive.google.com/file/d/1bpQTZp_0TEAJHWR7yWK3_nxjZTSEXVj8/view" },
+  { title: "Automação de Processos com RPA", org: "UNISAGRADO · Curso de extensão", date: "Dez/2025", hours: 40, category: "extensao",
+    skills: ["RPA", "Automação"], image: `${C}/rpa-2025`,
+    credential: "https://drive.google.com/file/d/1KsoKO5SK0nBlYhQKEKqhin7E6YivYY5x/view" },
+  { title: "Linguagem de Programação Python — Básico", org: "Fundação Bradesco", date: "Abr/2024", hours: 18, category: "curso",
+    skills: ["Python"], image: `${C}/python-bradesco-2024`,
+    credential: "https://drive.google.com/file/d/1_pjAo52qVAVYruudyxD8sZqJsVDlp7q3/view" },
+  { title: "Projetos de Sistemas de TI", org: "Fundação Bradesco", date: "Abr/2024", hours: 15, category: "curso",
+    skills: ["Gestão de projetos"], image: `${C}/projetos-ti-bradesco-2024`,
+    credential: "https://drive.google.com/file/d/1RSb9LE4dcybAqXNlz6U6MbK8IONb04jW/view" },
+  { title: "VII SITec — Semana de Inovação e Tecnologia", org: "UNISAGRADO", date: "Nov/2025", hours: 9, category: "evento",
+    skills: ["Agentes inteligentes"], image: `${C}/sitec-2025`,
+    credential: "https://drive.google.com/file/d/1qLl_fsUU2P8FMNDzgkAEZ4EvrQcSoiTf/view" },
+  { title: "Introdução à Unity", org: "UNISAGRADO", date: "Abr/2024", hours: 8, category: "evento",
+    skills: ["Unity", "C#"], image: `${C}/unity-2024`,
+    credential: "https://drive.google.com/file/d/1WUNR6neQ0P9gaUC7RE7bXH2h72-gbdSY/view" },
+  { title: "Introdução ao Figma", org: "UNISAGRADO", date: "Set/2024", hours: 8, category: "evento",
+    skills: ["Figma", "UI"], image: `${C}/figma-2024`,
+    credential: "https://drive.google.com/file/d/1xcDUlo2EHhMI8PY31F7nczpW879gcfbu/view" },
+  { title: "Scratch: desenvolvendo jogos através da programação", org: "Alura", date: "Out/2023", hours: 6, category: "curso",
+    skills: ["Lógica"], image: `${C}/scratch-alura-2023`,
+    credential: "https://drive.google.com/file/d/1MXI8wdX5kbR7JdBA32F69yLzgBFnX1Ih/view" },
+  { title: "VI SITec — Semana de Inovação e Tecnologia", org: "UNISAGRADO", date: "Nov/2024", hours: 4, category: "evento",
+    skills: ["Palestras"], image: `${C}/sitec-2024`,
+    credential: "https://drive.google.com/file/d/1IO_Wgxzio1VpptmlWmLmUgE85x5ZO-f3/view" },
+];

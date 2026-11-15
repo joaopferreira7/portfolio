@@ -18,14 +18,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2026-11-15" />
+  <link rel="stylesheet" href="style.css?v=2026-11-15b" />
 </head>
 <body>
   <nav class="nav">
     <a href="#inicio" class="active">Início</a>
     <a href="#experiencia">Experiência</a>
     <a href="#projetos">Projetos</a>
-    <a href="#ferramentas">Ferramentas</a>
+    <a href="#formacao">Formação</a>
+    <a href="#certificados">Certificados</a>
     <a href="#contato">Contato</a>
   </nav>
 
@@ -82,7 +83,7 @@
 
       <!-- Experiência -->
       <section id="experiencia" class="section">
-        <h2 class="title">Experiência<br /><span class="muted">&amp; Formação</span></h2>
+        <h2 class="title">Experiência<br /><span class="muted">&amp; Projetos</span></h2>
         <div class="timeline">
           <article class="tl-item tl-main">
             <div>
@@ -92,6 +93,22 @@
               <div class="tags"><span class="tag">Java</span><span class="tag">RPA</span><span class="tag">Sustentação</span><span class="tag">Monitoramento em produção</span></div>
             </div>
             <span class="tl-date">11/2025 — atual</span>
+          </article>
+          <article class="tl-item">
+            <div>
+              <h3>Design de interface — Vitrine Bauru</h3>
+              <p class="tl-org">UNISAGRADO · projeto de extensão com a SEDECON de Bauru</p>
+              <p>Marketplace que conecta pequenos empreendedores atendidos pela Secretaria de Desenvolvimento Econômico, Turismo e Inovação a consumidores da cidade. Fiquei com o design da interface e a identidade visual.</p>
+            </div>
+            <span class="tl-date">2026</span>
+          </article>
+          <article class="tl-item">
+            <div>
+              <h3>Desenvolvedor — Fábrica de Software</h3>
+              <p class="tl-org">UNISAGRADO · projeto de extensão (109 horas)</p>
+              <p>Desenvolvimento em equipe de websites, aplicativos e jogos com orientação de professores, prazos e apresentação de resultados. Dessa fase saiu a <a class="inline" href="projeto.html?id=jornada-do-bem">Jornada do Bem</a>, app em Flutter publicado na Play Store.</p>
+            </div>
+            <span class="tl-date">01/2025 — 07/2025</span>
           </article>
           <article class="tl-item">
             <div>
@@ -110,14 +127,6 @@
             </div>
             <span class="tl-date">03/2024 — 07/2024</span>
           </article>
-          <article class="tl-item">
-            <div>
-              <h3>Bacharelado em Ciência da Computação</h3>
-              <p class="tl-org">UNISAGRADO · Bauru/SP</p>
-              <p>Engenharia de software, banco de dados, desenvolvimento de jogos e visão computacional, além de projeto de extensão com a SEDECON de Bauru. Inglês avançado.</p>
-            </div>
-            <span class="tl-date">02/2024 — 12/2027 (previsão)</span>
-          </article>
         </div>
       </section>
 
@@ -128,6 +137,37 @@
         <h3 class="subtitle">Outros projetos</h3>
         <div class="projects" id="project-list"></div>
         <a class="btn-outline" href="https://github.com/joaopferreira7?tab=repositories" target="_blank" rel="noopener">Ver todos no GitHub →</a>
+      </section>
+
+      <!-- Formação -->
+      <section id="formacao" class="section">
+        <h2 class="title">Formação<br /><span class="muted">&amp; Trajetória</span></h2>
+        <div class="edu" id="edu-list"></div>
+        <div class="edu-extra">
+          <div>
+            <h3 class="subtitle">Idiomas</h3>
+            <div class="langs" id="lang-list"></div>
+          </div>
+          <div>
+            <h3 class="subtitle">Outros cursos</h3>
+            <div class="tags" id="other-courses"></div>
+          </div>
+        </div>
+        <h3 class="subtitle">Trajetória ano a ano</h3>
+        <ol class="journey" id="journey"></ol>
+      </section>
+
+      <!-- Certificados -->
+      <section id="certificados" class="section">
+        <h2 class="title">Certificados<br /><span class="muted">&amp; Cursos</span></h2>
+        <div class="cert-stats" id="cert-stats"></div>
+        <div class="filters" role="tablist" aria-label="Filtrar certificados" id="cert-filters">
+          <button type="button" class="filter active" data-filter="todos" role="tab" aria-selected="true">Todos</button>
+          <button type="button" class="filter" data-filter="curso" role="tab" aria-selected="false">Cursos</button>
+          <button type="button" class="filter" data-filter="extensao" role="tab" aria-selected="false">Extensão</button>
+          <button type="button" class="filter" data-filter="evento" role="tab" aria-selected="false">Eventos e minicursos</button>
+        </div>
+        <div class="certs" id="cert-list"></div>
       </section>
 
       <!-- Ferramentas -->
@@ -162,7 +202,16 @@
     </main>
   </div>
 
-  <script src="dados.js?v=2026-11-15"></script>
-  <script src="script.js?v=2026-11-15"></script>
+  <dialog class="lightbox cert-box" id="cert-box" aria-label="Certificado ampliado">
+    <img id="cert-box-img" alt="" />
+    <div class="cert-box-bar">
+      <span id="cert-box-title"></span>
+      <a id="cert-box-link" href="#" target="_blank" rel="noopener">Ver credencial original ↗</a>
+      <button type="button" id="cert-box-close" aria-label="Fechar">✕</button>
+    </div>
+  </dialog>
+
+  <script src="dados.js?v=2026-11-15b"></script>
+  <script src="script.js?v=2026-11-15b"></script>
 </body>
 </html>

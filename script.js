@@ -97,6 +97,97 @@ document.getElementById("tool-extra").innerHTML = toolsExtra
   )
   .join("");
 
+// ===== Formação =====
+document.getElementById("edu-list").innerHTML = education
+  .map(
+    (e) => `
+    <article class="edu-card">
+      <div class="edu-head">
+        <span class="edu-status${e.status === "Cursando" ? " live" : ""}">${e.status}</span>
+        <span class="edu-date">${e.date}</span>
+      </div>
+      <h3>${e.title}</h3>
+      <p class="tl-org">${e.org}</p>
+      ${e.desc ? `<p class="edu-desc">${e.desc}</p>` : ""}
+    </article>`
+  )
+  .join("");
+
+document.getElementById("lang-list").innerHTML = languages
+  .map((l) => `<div class="lang"><strong>${l.name}</strong><span>${l.level}</span></div>`)
+  .join("");
+
+document.getElementById("other-courses").innerHTML = otherCourses.map((c) => `<span class="tag">${c}</span>`).join("");
+
+document.getElementById("journey").innerHTML = journey
+  .map(
+    (y) => `
+    <li class="journey-year${y.future ? " future" : ""}">
+      <span class="journey-label">${y.year}</span>
+      <ul>${y.items.map((i) => `<li>${i}</li>`).join("")}</ul>
+    </li>`
+  )
+  .join("");
+
+// ===== Certificados =====
+const totalHours = certificates.reduce((sum, c) => sum + c.hours, 0);
+const institutions = new Set(certificates.map((c) => c.org.split(" · ")[0])).size;
+document.getElementById("cert-stats").innerHTML = [
+  [certificates.length, "certificados"],
+  [totalHours, "horas de formação complementar"],
+  [institutions, "instituições"],
+]
+  .map(([n, label]) => `<div class="stat"><strong>${n}</strong><span>${label}</span></div>`)
+  .join("");
+
+const certList = document.getElementById("cert-list");
+certList.innerHTML = certificates
+  .map(
+    (c, i) => `
+    <button type="button" class="cert" data-category="${c.category}" data-index="${i}" aria-label="Ampliar certificado: ${c.title}">
+      <span class="cert-thumb"><img src="${c.image}-thumb.webp" alt="" loading="lazy" /></span>
+      <span class="cert-body">
+        <span class="cert-meta">${c.org}</span>
+        <span class="cert-title">${c.title}</span>
+        <span class="cert-info"><span>${c.date}</span><span class="cert-hours">${c.hours} h</span></span>
+      </span>
+    </button>`
+  )
+  .join("");
+
+document.getElementById("cert-filters").addEventListener("click", (e) => {
+  const btn = e.target.closest(".filter");
+  if (!btn) return;
+  document.querySelectorAll("#cert-filters .filter").forEach((b) => {
+    const on = b === btn;
+    b.classList.toggle("active", on);
+    b.setAttribute("aria-selected", on);
+  });
+  const f = btn.dataset.filter;
+  certList.querySelectorAll(".cert").forEach((card) => {
+    card.hidden = f !== "todos" && card.dataset.category !== f;
+  });
+});
+
+const certBox = document.getElementById("cert-box");
+const certBoxImg = document.getElementById("cert-box-img");
+const certBoxLink = document.getElementById("cert-box-link");
+certList.addEventListener("click", (e) => {
+  const card = e.target.closest(".cert");
+  if (!card) return;
+  const c = certificates[card.dataset.index];
+  certBoxImg.src = `${c.image}.webp`;
+  certBoxImg.alt = `Certificado: ${c.title}`;
+  document.getElementById("cert-box-title").textContent = `${c.title} · ${c.hours} h`;
+  certBoxLink.hidden = !c.credential;
+  if (c.credential) certBoxLink.href = c.credential;
+  certBox.showModal();
+});
+document.getElementById("cert-box-close").addEventListener("click", () => certBox.close());
+certBox.addEventListener("click", (e) => {
+  if (e.target === certBox || e.target === certBoxImg) certBox.close();
+});
+
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // ===== Formulário de contato (FormSubmit, com fallback para mailto) =====

@@ -14,6 +14,7 @@ Site estático em HTML, CSS e JavaScript puro — sem build — hospedado na **V
 | `script.js` | Renderiza projetos e ferramentas, formulário de contato (FormSubmit, com fallback para mailto) e animações |
 | `projeto.html` | Página de cada projeto com vídeo, "como foi feito" e galeria (`projeto.html?id=...`) |
 | `img/projetos/` | Capturas (WebP) e vídeos (MP4) dos projetos |
+| `img/certificados/` | Certificados em WebP (o CPF do certificado da FAT foi coberto) |
 | `cv-joao-pedro-ferreira.pdf` | Currículo do botão "Baixar CV" |
 | `og.png` | Imagem de prévia ao compartilhar o link (1200×630) |
 | `vercel.json` | Configuração de deploy (URLs limpas e cache) |
@@ -22,6 +23,7 @@ Site estático em HTML, CSS e JavaScript puro — sem build — hospedado na **V
 
 - **Projetos:** lista `projectsData` no `dados.js`. `featured: true` coloca o projeto em destaque (problema → o que fiz → resultado). Projetos com `gallery` ou `video` ganham página própria; os outros abrem direto no GitHub. Os campos estão explicados no topo do arquivo.
 - **Imagens e vídeos:** coloque em `img/projetos/<id>/`. Prefira WebP com até 1280 px de largura e MP4 (H.264) com `-movflags +faststart`.
+- **Formação e certificados:** `education`, `languages`, `otherCourses`, `journey` (trajetória ano a ano) e `certificates` no `dados.js`. Cada certificado usa duas imagens em `img/certificados/`: `<nome>.webp` (ampliada) e `<nome>-thumb.webp` (miniatura). O campo `credential` (link público) é opcional: não use link para documentos que mostram CPF ou outros dados pessoais.
 - **Ferramentas:** `toolsMain` / `toolsExtra` no `script.js`.
 - **Formulário:** usa o [FormSubmit](https://formsubmit.co) (`FORM_ENDPOINT` no `script.js`). Na primeira mensagem, chega um e-mail de ativação; depois de clicar no link, as mensagens passam a chegar normalmente. Se o envio falhar, o formulário oferece abrir o app de e-mail.
 
