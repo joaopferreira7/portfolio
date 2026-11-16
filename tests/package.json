@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-testes",
+  "private": true,
+  "type": "module",
+  "description": "Testes automáticos do portfólio (não fazem parte do site publicado).",
+  "scripts": {
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "axe-core": "4.10.2",
+    "playwright": "^1.49.0"
+  }
+}
