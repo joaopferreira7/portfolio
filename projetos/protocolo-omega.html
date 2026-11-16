@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- Gerado por tools/gerar-paginas.mjs a partir de dados.js. Não edite à mão. -->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Protocolo Ômega — João Pedro Ferreira</title>
+  <meta name="description" content="FPS sci-fi na Unreal Engine 5 feito em Blueprints: disparo por Line Trace, HUD em UMG, troca de câmera e robôs com Behavior Tree." />
+  <link rel="canonical" href="https://joaopferreira.vercel.app/projetos/protocolo-omega" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="João Pedro Ferreira" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://joaopferreira.vercel.app/projetos/protocolo-omega" />
+  <meta property="og:title" content="Protocolo Ômega — João Pedro Ferreira" />
+  <meta property="og:description" content="FPS sci-fi na Unreal Engine 5 feito em Blueprints: disparo por Line Trace, HUD em UMG, troca de câmera e robôs com Behavior Tree." />
+  <meta property="og:image" content="https://joaopferreira.vercel.app/img/og/protocolo-omega.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="https://github.com/joaopferreira7.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css?v=2026-11-16" />
+</head>
+<body>
+  <nav class="nav" aria-label="Principal">
+    <a class="nav-brand" href="../#inicio">João Pedro Ferreira</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <div class="nav-links" id="nav-links">
+      <a href="../#inicio">Início</a>
+      <a href="../#experiencia">Experiência</a>
+      <a href="../#projetos" class="active">Projetos</a>
+      <a href="../#formacao">Formação</a>
+      <a href="../#certificados">Certificados</a>
+      <a href="../#contato">Contato</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <a class="back" href="../#projetos">← Voltar para projetos</a>
+    <p class="page-kind">FPS · Unreal Engine 5 · equipe de 5</p>
+    <h1 class="title">Protocolo Ômega</h1>
+    <div class="tags"><span class="tag">Unreal Engine 5</span><span class="tag">Blueprints</span><span class="tag">Niagara</span><span class="tag">UMG</span><span class="tag">Behavior Tree</span></div>
+
+    <section class="page-section">
+      <h2>Sobre o projeto</h2>
+      <dl class="facts">
+        <div><dt>Problema</dt><dd>Disciplina de Computação Gráfica: aplicar técnicas de CG em sistemas de jogo de verdade. O jogador é o agente AXIS-7 e precisa desativar os robôs Ômega, controlados por uma IA hostil, num complexo subterrâneo.</dd></div>
+        <div><dt>O que fiz</dt><dd>Em equipe de 5, com toda a lógica em Blueprints: disparo hit scan com efeitos de impacto, HUD com barra de vida, troca de skin em tempo real, câmera em 1ª e 3ª pessoa com mira, itens coletáveis e inimigos com IA.</dd></div>
+        <div><dt>Resultado</dt><dd>FPS jogável com 5 sistemas completos e robôs que patrulham, perseguem e atiram no jogador.</dd></div>
+      </dl>
+    </section>
+    <section class="page-section">
+      <h2>Como foi feito</h2>
+      <ul class="how">
+        <li>Disparo por hit scan (Line Trace) a partir da câmera, com Play Montage e muzzle flash</li>
+        <li>Impacto com Break Hit Result e Apply Damage, faísca em Niagara e Decal de marca de bala, com efeito e som por tipo de superfície</li>
+        <li>HUD em UMG: objetivo, barra de vida via Event Dispatcher e vinheta vermelha ao levar dano</li>
+        <li>Tela de Game Over com Respawn e Main Menu</li>
+        <li>Troca da cor da jaqueta em tempo real com Dynamic Material Instance</li>
+        <li>Câmera em 3ª pessoa (Spring Arm) e 1ª pessoa com a tecla V, e mira com FOV de 90° para 65° via Timeline</li>
+        <li>Medkits coletáveis (+50 de vida)</li>
+        <li>Robôs com Behavior Tree em 4 estados (parado, patrulha, perseguição e ataque), Blackboard, AI Perception e NavMesh</li>
+      </ul>
+    </section>
+    <section class="page-section">
+      <h2>Capturas de tela</h2>
+      <div class="gallery">
+        <button type="button" data-src="../img/projetos/protocolo-omega/terceira-pessoa.webp" aria-label="Ampliar captura 1 de 8"><img src="../img/projetos/protocolo-omega/terceira-pessoa-thumb.webp" alt="Captura 1 do Protocolo Ômega" loading="lazy" /></button>
+        <button type="button" data-src="../img/projetos/protocolo-omega/primeira-pessoa.webp" aria-label="Ampliar captura 2 de 8"><img src="../img/projetos/protocolo-omega/primeira-pessoa-thumb.webp" alt="Captura 2 do Protocolo Ômega" loading="lazy" /></button>
+        <button type="button" data-src="../img/projetos/protocolo-omega/tiro.webp" aria-label="Ampliar captura 3 de 8"><img src="../img/projetos/protocolo-omega/tiro-thumb.webp" alt="Captura 3 do Protocolo Ômega" loading="lazy" /></button>
+        <button type="button" data-src="../img/projetos/protocolo-omega/robos-ia.webp" aria-label="Ampliar captura 4 de 8"><img src="../img/projetos/protocolo-omega/robos-ia-thumb.webp" alt="Captura 4 do Protocolo Ômega" loading="lazy" /></button>
+        <button type="button" data-src="../img/projetos/protocolo-omega/hud-skins.webp" aria-label="Ampliar captura 5 de 8"><img src="../img/projetos/protocolo-omega/hud-skins-thumb.webp" alt="Captura 5 do Protocolo Ômega" loading="lazy" /></button>
+        <button type="button" data-src="../img/projetos/protocolo-omega/medkit.webp" aria-label="Ampliar captura 6 de 8"><img src="../img/projetos/protocolo-omega/medkit-thumb.webp" alt="Captura 6 do Protocolo Ômega" loading="lazy" /></button>
+        <button type="button" data-src="../img/projetos/protocolo-omega/game-over.webp" aria-label="Ampliar captura 7 de 8"><img src="../img/projetos/protocolo-omega/game-over-thumb.webp" alt="Captura 7 do Protocolo Ômega" loading="lazy" /></button>
+        <button type="button" data-src="../img/projetos/protocolo-omega/blueprint-disparo.webp" aria-label="Ampliar captura 8 de 8"><img src="../img/projetos/protocolo-omega/blueprint-disparo-thumb.webp" alt="Captura 8 do Protocolo Ômega" loading="lazy" /></button>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Imagem ampliada">
+    <img id="lightbox-img" alt="" />
+  </dialog>
+
+  <script src="../menu.js?v=2026-11-16"></script>
+  <script src="../galeria.js?v=2026-11-16"></script>
+</body>
+</html>
