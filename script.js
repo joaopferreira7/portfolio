@@ -249,7 +249,7 @@ const io = new IntersectionObserver(
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
 // ===== Link ativo no menu =====
-const links = [...document.querySelectorAll(".nav a")];
+const links = [...document.querySelectorAll(".nav-links a")];
 const sections = links.map((a) => document.querySelector(a.getAttribute("href")));
 const navIO = new IntersectionObserver(
   (entries) =>

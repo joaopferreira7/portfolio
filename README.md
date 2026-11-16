@@ -12,12 +12,18 @@ Site estático em HTML, CSS e JavaScript puro — sem build — hospedado na **V
 | `style.css` | Tema escuro, cartão de perfil fixo, layout responsivo |
 | `dados.js` | Dados de todos os projetos (usado pela página inicial e pela página de cada projeto) |
 | `script.js` | Renderiza projetos e ferramentas, formulário de contato (FormSubmit, com fallback para mailto) e animações |
-| `projeto.html` | Página de cada projeto com vídeo, "como foi feito" e galeria (`projeto.html?id=...`) |
+| `projeto.html` | Endereço antigo das páginas de projeto; redireciona para `projetos/<id>.html` |
 | `img/projetos/` | Capturas (WebP) e vídeos (MP4) dos projetos |
 | `img/certificados/` | Certificados em WebP (o CPF do certificado da FAT foi coberto) |
 | `cv-joao-pedro-ferreira.pdf` | Currículo do botão "Baixar CV" |
 | `og.png` | Imagem de prévia ao compartilhar o link (1200×630) |
-| `vercel.json` | Configuração de deploy (URLs limpas e cache) |
+| `vercel.json` | Configuração de deploy (URLs limpas, cache e redirect do endereço antigo de projeto) |
+| `projetos/<id>.html`, `sitemap.xml`, `img/og/` | **Gerados** pelos scripts de `tools/` a partir do `dados.js` — não edite à mão |
+| `menu.js`, `galeria.js` | Menu do celular e lightbox das galerias |
+| `404.html`, `robots.txt` | Página de erro e instruções para buscadores |
+| `tools/` | `gerar-paginas.mjs` (Node) e `gerar-imagens.py` (Python + Pillow) |
+| `tests/` | Testes automáticos com Playwright e axe-core (`cd tests && npm install && npm test`) |
+| `CLAUDE.md` | Guia para agentes de IA que trabalham no repositório |
 
 ## Como atualizar
 
@@ -29,7 +35,15 @@ Site estático em HTML, CSS e JavaScript puro — sem build — hospedado na **V
 
 A experiência profissional fica direto no `index.html`, seção `#experiencia`. Para trocar o CV, substitua o PDF mantendo o nome. Edite, faça commit e push — a Vercel publica automaticamente.
 
-> Ao mudar `style.css`, `dados.js` ou `script.js`, atualize o `?v=` deles no `index.html` e no `projeto.html` (ex.: `?v=2026-12-01`). O `vercel.json` guarda esses arquivos em cache por 1 hora, e sem trocar o `?v=` quem já visitou o site continua vendo a versão antiga.
+> Ao mudar qualquer CSS/JS, atualize o `?v=` em `index.html`, `projeto.html`, `404.html` e a constante `VERSAO` de `tools/gerar-paginas.mjs` (ex.: `?v=2026-12-01`) e rode `node tools/gerar-paginas.mjs`. O `vercel.json` guarda esses arquivos em cache por 1 hora, e sem trocar o `?v=` quem já visitou o site continua vendo a versão antiga.
+
+## Depois de editar o `dados.js`
+
+```bash
+python3 tools/gerar-imagens.py
+node tools/gerar-paginas.mjs
+cd tests && npm test
+```
 
 ## Rodar localmente
 

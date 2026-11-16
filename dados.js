@@ -191,7 +191,8 @@ const projectsData = [
 ];
 
 const hasPage = (p) => Boolean((p.gallery && p.gallery.length) || p.video);
-const projectUrl = (p) => (hasPage(p) ? `projeto.html?id=${p.id}` : `${GITHUB}/${p.repo}`);
+// Projetos com página: HTML estático gerado por tools/gerar-paginas.mjs.
+const projectUrl = (p) => (hasPage(p) ? `projetos/${p.id}.html` : `${GITHUB}/${p.repo}`);
 
 // ===== Formação =====
 const education = [

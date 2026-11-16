@@ -14,20 +14,42 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "João Pedro Ferreira",
+    "url": "https://joaopferreira.vercel.app/",
+    "image": "https://joaopferreira.vercel.app/og.png",
+    "jobTitle": "Estagiário em Desenvolvimento Java",
+    "worksFor": { "@type": "Organization", "name": "Yank Solutions" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "UNISAGRADO" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Bauru", "addressRegion": "SP", "addressCountry": "BR" },
+    "knowsAbout": ["Java", "Python", "Flask", "APIs REST", "SQL", "C#", "Unity", "RPA"],
+    "sameAs": [
+      "https://github.com/joaopferreira7",
+      "https://www.linkedin.com/in/joaopedroferreira19"
+    ]
+  }
+  </script>
   <link rel="icon" href="https://github.com/joaopferreira7.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2026-11-15b" />
+  <link rel="stylesheet" href="style.css?v=2026-11-16" />
 </head>
 <body>
-  <nav class="nav">
-    <a href="#inicio" class="active">Início</a>
-    <a href="#experiencia">Experiência</a>
-    <a href="#projetos">Projetos</a>
-    <a href="#formacao">Formação</a>
-    <a href="#certificados">Certificados</a>
-    <a href="#contato">Contato</a>
+  <nav class="nav" aria-label="Principal">
+    <a class="nav-brand" href="#inicio">João Pedro Ferreira</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <div class="nav-links" id="nav-links">
+      <a href="#inicio" class="active">Início</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#formacao">Formação</a>
+      <a href="#certificados">Certificados</a>
+      <a href="#contato">Contato</a>
+    </div>
   </nav>
 
   <div class="layout">
@@ -106,7 +128,7 @@
             <div>
               <h3>Desenvolvedor — Fábrica de Software</h3>
               <p class="tl-org">UNISAGRADO · projeto de extensão (109 horas)</p>
-              <p>Desenvolvimento em equipe de websites, aplicativos e jogos com orientação de professores, prazos e apresentação de resultados. Dessa fase saiu a <a class="inline" href="projeto.html?id=jornada-do-bem">Jornada do Bem</a>, app em Flutter publicado na Play Store.</p>
+              <p>Desenvolvimento em equipe de websites, aplicativos e jogos com orientação de professores, prazos e apresentação de resultados. Dessa fase saiu a <a class="inline" href="projetos/jornada-do-bem.html">Jornada do Bem</a>, app em Flutter publicado na Play Store.</p>
             </div>
             <span class="tl-date">01/2025 — 07/2025</span>
           </article>
@@ -211,7 +233,8 @@
     </div>
   </dialog>
 
-  <script src="dados.js?v=2026-11-15b"></script>
-  <script src="script.js?v=2026-11-15b"></script>
+  <script src="menu.js?v=2026-11-16"></script>
+  <script src="dados.js?v=2026-11-16"></script>
+  <script src="script.js?v=2026-11-16"></script>
 </body>
 </html>
